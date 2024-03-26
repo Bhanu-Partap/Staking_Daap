@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import  connectWallet  from '../../Utils/connectWallet'
 
 const Wallet = ()=>{
     const [state, setState] = useState({
@@ -14,8 +15,9 @@ const Wallet = ()=>{
     const handleWallet =async()=>{
         try{
             setIsLoading(true)
-            const {provider,account,stakingContract,stakingTokenContract,chainId} = await connectWallet();
-            setState({provider,account,stakingContract,stakingTokenContract,chainId});
+            const {provider,selectedAccount,stakingContract,stakingTokenContract,chainId} = await connectWallet();
+            console.log(provider,selectedAccount,stakingContract,stakingTokenContract,chainId);
+            setState({provider,selectedAccount,stakingContract,stakingTokenContract,chainId});
         }
         catch(error){
             console.error("Wallet Not Connected", error.message);
@@ -24,6 +26,9 @@ const Wallet = ()=>{
             setIsLoading(false)
         }
     }
+    return(
+        <button onClick={handleWallet}>Connect to MetaMask </button>
+    )
 
 }
 export default Wallet;
