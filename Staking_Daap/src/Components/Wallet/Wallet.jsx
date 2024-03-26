@@ -1,6 +1,8 @@
-import { Children, useState } from 'react'
+import { Children, useEffect, useState } from 'react'
 import  connectWallet  from '../../Utils/connectWallet'
 import Web3Context from '../../Context/Web3Context'
+import { accountChange } from '../../Utils/AccountChange'
+import { chainChange, chaniChange } from '../../Utils/chainChange'
 
 const Wallet = ()=>{
     const [state, setState] = useState({
@@ -26,7 +28,14 @@ const Wallet = ()=>{
         finally{
             setIsLoading(false)
         }
+
     }
+    useEffect(()=>{
+     window.ethereum.on("Account Changed : ", ()=>accountChange(setState))   
+     window.ethereum.on("Chain Changed : ", ()=>chainChange(setState))   
+    })
+
+
     return(
         <>
         <Web3Context.Provider value= {state}>
