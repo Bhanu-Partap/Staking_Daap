@@ -1,8 +1,10 @@
-import { Children, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import  connectWallet  from '../../Utils/connectWallet'
-import Web3Context from '../../Context/Web3Context'
+// import Web3Context from '../../Context/Web3Context'
 import { accountChange } from '../../Utils/AccountChange'
-import { chainChange, chaniChange } from '../../Utils/chainChange'
+import { chainChange  } from '../../Utils/chainChange'
+
+
 
 const Wallet = ()=>{
     const [state, setState] = useState({
@@ -31,20 +33,24 @@ const Wallet = ()=>{
 
     }
     useEffect(()=>{
-     window.ethereum.on("Account Changed : ", ()=>accountChange(setState))   
-     window.ethereum.on("Chain Changed : ", ()=>chainChange(setState))   
-    })
+     window.ethereum.on("accountChanged", ()=>accountChange(setState))  
+     window.ethereum.on("chainChanged", ()=>chainChange(setState))   
+
+     return()=>{
+    window.ethereum.removeListener("accountChanged", ()=>accountChange(setState))  
+    window.ethereum.removeListener("chainChanged", ()=>chainChange(setState)) 
+     }
+    },[])
 
 
     return(
         <>
-        <Web3Context.Provider value= {state}>
+        {/* <Web3Context.Provider value= {state}>
         {Children}  
-        </Web3Context.Provider>
+        </Web3Context.Provider> */}
         {isLoading && <p>Loading...</p>}
         <button onClick={handleWallet}>Connect to MetaMask </button>
         </>
     )
-
 }
 export default Wallet;
