@@ -1,4 +1,4 @@
-import {ethers} from 'ethers'
+import {Contract, ethers} from 'ethers'
 import stakingAbi from "../ABI/stakingAbi.json"
 import stakingTokenAbi from "../ABI/stakeTokenAbi.json"
 
@@ -25,7 +25,13 @@ export const connectWallet =  async()=> {
     signer = await provider.getSigners()
 
     // Creating Instance
-    
+    const stakingContractAddress = "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
+    const stakingTokenContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138"
+
+    stakingContract = new Contract(stakingContractAddress, stakingAbi,signer)
+    stakingTokenContract = new Contract(stakingTokenContractAddress, stakingTokenAbi,signer)
+
+    return{provider,selectedAccount, stakingContract, stakingTokenContract, chainId}
 
   }
   catch(error){
