@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import  connectWallet  from '../../Utils/connectWallet'
-// import Web3Context from '../../Context/Web3Context'
+import Web3Context from '../../Context/Web3Context'
 import { accountChange } from '../../Utils/AccountChange'
 import { chainChange  } from '../../Utils/chainChange'
 
@@ -45,9 +45,9 @@ const Wallet = ()=>{
 
     return(
         <>
-        {/* <Web3Context.Provider value= {state}>
+        <Web3Context.Provider value= {state}>
         {Children}  
-        </Web3Context.Provider> */}
+        </Web3Context.Provider>
         {isLoading && <p>Loading...</p>}
         <button onClick={handleWallet}>Connect to MetaMask </button>
         </>
