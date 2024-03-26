@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { Children, useState } from 'react'
 import  connectWallet  from '../../Utils/connectWallet'
+import Web3Context from '../../Context/Web3Context'
 
 const Wallet = ()=>{
     const [state, setState] = useState({
@@ -27,7 +28,13 @@ const Wallet = ()=>{
         }
     }
     return(
+        <>
+        <Web3Context.Provider value= {state}>
+        {Children}  
+        </Web3Context.Provider>
+        {isLoading && <p>Loading...</p>}
         <button onClick={handleWallet}>Connect to MetaMask </button>
+        </>
     )
 
 }

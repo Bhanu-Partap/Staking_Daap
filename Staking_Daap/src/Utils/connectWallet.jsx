@@ -15,7 +15,7 @@ const connectWallet = (async()=>{
         let chainIdHex = await window.ethereum.request({
             method:'eth_chainId'
         }) 
-        chainId = parseInt(chainIdHex,10)
+        chainId = parseInt(chainIdHex,16)
         let selectedAccount = account[0]
         if(!selectedAccount){
             throw new Error("No ethereum account available")
