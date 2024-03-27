@@ -8,7 +8,7 @@ const connectWallet = (async()=>{
         if(window.ethereum === null){
             throw new Error("Metamask is not installed")
         }
-        const account = await window.ethereum.request({
+        let selectedAccount = await window.ethereum.request({
             method:'eth_requestAccounts'
         })
     
@@ -16,7 +16,7 @@ const connectWallet = (async()=>{
             method:'eth_chainId'
         }) 
         chainId = parseInt(chainIdHex,16)
-        let selectedAccount = account[0]
+         selectedAccount = selectedAccount[0]
         if(!selectedAccount){
             throw new Error("No ethereum account available")
         }

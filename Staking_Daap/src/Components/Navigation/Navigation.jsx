@@ -1,11 +1,11 @@
-import { ConnectedAcounts } from "./ConnectedAcounts"
-import { ConnectedNetwork } from "./ConnectedNetwork"
+import  ConnectedAccounts  from "./ConnectedAccounts.jsx"
+import  ConnectedNetwork  from "./ConnectedNetwork.jsx"
 
 export default function Navigation() {
-  return (
-    <>
-    <ConnectedAcounts />
-    <ConnectedNetwork />
-    </>
-  )
+    return (
+        <>
+            <ConnectedAccounts />
+            <ConnectedNetwork />
+        </>
+    )
 }
