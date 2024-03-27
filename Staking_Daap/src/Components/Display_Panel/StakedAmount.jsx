@@ -3,7 +3,7 @@ import Web3Context from "../../Context/Web3Context"
 import { ethers } from "ethers"
 
 
-export const StakedAmount = () => {
+const StakedAmount = () => {
     const { stakingContract, selectedAccount } = useContext(Web3Context)
     const { StakedAmount, setStakedAmount } = useState("0")
 
@@ -21,3 +21,4 @@ export const StakedAmount = () => {
     }, [stakingContract, selectedAccount])
 
 }
+export default StakedAmount

@@ -1,8 +1,10 @@
 // import React from 'react'
 
-export const RewardRate = () => {
+ const RewardRate = () => {
   return (
     <>
+    text at reward
     </>
   )
 }
+export default RewardRate

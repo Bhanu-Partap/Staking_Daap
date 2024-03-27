@@ -1,8 +1,10 @@
 // import React from 'react'
 
-export const EarnedReward = () => {
+ const EarnedReward = () => {
   return (
     <>
+    text at Earnedreward
     </>
   )
 }
+export default EarnedReward
