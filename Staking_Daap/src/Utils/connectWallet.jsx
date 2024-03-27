@@ -23,6 +23,11 @@ const connectWallet = (async()=>{
     
         provider = new ethers.BrowserProvider(window.ethereum)
         signer = await provider.getSigner()
+
+//================= ADDRESSES FOR CONTRACTS =====================//
+        // Staking Token :  0x7061D16bEE4f5410593bF760941b62434b58a1D4
+        // Reward Token : 0x749D0db0510744d50652AFCcd549d32973d3ea38
+        // Staking Contract : 0x024BA12Ab9a0Db9c5490CBf250D4CBf57746CabB
     
         // Creating Instance
         const stakingContractAddress = "0x024BA12Ab9a0Db9c5490CBf250D4CBf57746CabB"
