@@ -25,8 +25,8 @@ const connectWallet = (async()=>{
         signer = await provider.getSigner()
     
         // Creating Instance
-        const stakingContractAddress = "0xf8e81D47203A594245E36C48e151709F0C19fBe8"
-        const stakingTokenContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138"
+        const stakingContractAddress = "0x024BA12Ab9a0Db9c5490CBf250D4CBf57746CabB"
+        const stakingTokenContractAddress = "0x7061D16bEE4f5410593bF760941b62434b58a1D4"
     
         stakingContract = new Contract(stakingContractAddress, stakingAbi,signer)
         stakingTokenContract = new Contract(stakingTokenContractAddress, stakingTokenAbi,signer)

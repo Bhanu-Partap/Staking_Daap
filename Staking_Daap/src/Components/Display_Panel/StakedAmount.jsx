@@ -11,10 +11,12 @@ const StakedAmount = () => {
     useEffect(() => {
         const fetchStakedBalance = async () => {
             try {
+                console.log(selectedAccount);   
                 const amountStaked = await stakingContract.stakedBalance(selectedAccount)
+                console.log(amountStaked);
             }
             catch (error) {
-                console.error("Error fetcching data :", error.message);
+                console.error("Error fetching data :", error.message);
             }
         }
         stakingContract && fetchStakedBalance()
