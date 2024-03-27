@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Children } from 'react'
 import connectWallet from '../../Utils/connectWallet'
 import Web3Context from '../../Context/Web3Context'
 import { accountChange } from '../../Utils/AccountChange'
@@ -6,7 +6,7 @@ import { chainChange } from '../../Utils/chainChange'
 
 
 
-const Wallet = () => {
+const Wallet = ({children}) => {
     const [state, setState] = useState({
         provider: null,
         account: null,
@@ -46,7 +46,7 @@ const Wallet = () => {
     return (
         <>
             <Web3Context.Provider value={state}>
-                {Children}
+                {children}
             </Web3Context.Provider>
             {isLoading && <p>Loading...</p>}
             <button onClick={handleWallet}>Connect to MetaMask </button>
