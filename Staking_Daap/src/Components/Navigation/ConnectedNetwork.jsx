@@ -3,20 +3,23 @@ import Web3Context from "../../Context/Web3Context"
 
 export const ConnectedNetwork = () => {
     const { chainId } = useContext(Web3Context)
-    if(chainId ===11155111){
+    if (chainId === 11155111) {
         return (
             <p>
-                Connected Network is : Sepolia
+                Connected Network is : Sepolia <br />
+                Connected Chain ID is : {chainId}
             </p>
         )
     }
-    else if(!chainId ===11155111){
-        return(
-            <p>Unsupported network</p>
+    else if (chainId !== 11155111) {
+        return (
+            <p>Unsupported network <br />
+            Connected Chain ID is : {chainId}
+            </p>
         )
     }
-    else{
-        return(
+    else {
+        return (
             <p>Not Connected</p>
         )
     }
