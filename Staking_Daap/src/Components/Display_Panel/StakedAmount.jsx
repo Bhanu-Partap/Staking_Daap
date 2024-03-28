@@ -5,15 +5,16 @@ import { ethers } from "ethers"
 
 const StakedAmount = () => {
     const { stakingContract, selectedAccount } = useContext(Web3Context)
-    const { StakedAmount, setStakedAmount } = useState("0")
+    const { stakedAmount, setStakedAmount } = useState(0)
 
 
     useEffect(() => {
         const fetchStakedBalance = async () => {
             try {
-                console.log(selectedAccount);   
-                const amountStaked = await stakingContract.stakedBalance(selectedAccount)
-                console.log(amountStaked);
+                const amountStakedWei = await stakingContract.stakedBalance(selectedAccount)
+                const amountStakedEth = ethers.formatUnits(amountStakedWei.toString(), 18);
+                console.log(amountStakedEth);
+                setStakedAmount(amountStakedEth);
             }
             catch (error) {
                 console.error("Error fetching data :", error.message);
@@ -22,5 +23,8 @@ const StakedAmount = () => {
         stakingContract && fetchStakedBalance()
     }, [stakingContract, selectedAccount])
 
+    return (
+        <p>Staked Amount : {stakedAmount}</p>
+    )
 }
 export default StakedAmount
