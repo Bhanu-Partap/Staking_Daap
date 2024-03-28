@@ -5,7 +5,7 @@ import { ethers } from "ethers"
 
 const StakedAmount = () => {
     const { stakingContract, selectedAccount } = useContext(Web3Context)
-    const { stakedAmount, setStakedAmount } = useState(0)
+    const [stakedAmount, setStakedAmount ] = useState(0)
 
 
     useEffect(() => {

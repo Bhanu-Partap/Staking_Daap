@@ -4,13 +4,12 @@ import { ethers } from "ethers"
 
  const RewardRate = () => {
   const { stakingContract, selectedAccount } = useContext(Web3Context)
-  const {rewardRate, setRewardRate} = useState(0) 
+  const [rewardRate, setRewardRate] = useState(0) 
 
   useEffect(() => {
     const fetchRewardRate = async () => {
         try {
             const rewardRateWei = await stakingContract.Reward_Rate()
-            // console.log(rewardRateWei);
             const rewardRateEth = ethers.formatUnits(rewardRateWei.toString(),18)
             // console.log(rewardRateEth);
             setRewardRate(rewardRateEth)
@@ -23,7 +22,7 @@ import { ethers } from "ethers"
 }, [stakingContract, selectedAccount])
 
 return(
-  <p>Reward Rate : {rewardRate}</p>
+  <p>Reward Rate : {rewardRate} token / seconds</p>
 )
 
 }
