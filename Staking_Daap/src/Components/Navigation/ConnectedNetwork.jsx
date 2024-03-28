@@ -6,21 +6,21 @@ export const ConnectedNetwork = () => {
     if (chainId === 11155111) {
         return (
             <p>
-                Connected Network is : Sepolia <br />
-                Connected Chain ID is : {chainId}
+                Connected Network is : <span style={{color:"green", fontWeight:"bold"}}>Sepolia</span> <br />
+                Connected Chain ID is :  <span style={{color:"green", fontWeight:"bold"}}>{chainId} </span>
             </p>
+        )
+    }
+    else if(chainId === 0){
+        return (
+            <p style={{color:"red"}}><span>Connected Network :</span> Not Connected</p>
         )
     }
     else if (chainId !== 11155111) {
         return (
-            <p>Unsupported network <br />
-            Connected Chain ID is : {chainId}
+            <p>Connected Network : <span style={{color:"red", fontWeight:"bold"}}> Unsupported network !!</span> <br />
             </p>
         )
     }
-    else {
-        return (
-            <p>Not Connected</p>
-        )
-    }
+    
 }

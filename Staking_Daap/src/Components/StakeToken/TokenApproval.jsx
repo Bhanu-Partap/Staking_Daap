@@ -1,16 +1,15 @@
-import { useState, useContext, useRef } from "react"
+import {  useContext, useRef, useState } from "react"
 import { ethers } from "ethers"
+import Web3Context from '../../Context/Web3Context'
+
 
 
 const TokenApproval = ( ) => {
+
+    const {stakingTokenContract, stakingContract}= useContext(Web3Context)
     const approvedTokenRef = useRef()
+    const[transactionStatus, setTransactionStatus] = useState(0)
     const approveToken = async (e) => {
-        // if (e) {
-        //     e.preventDefault(); 
-        // } else {
-        //     console.error("Event object is missing");
-        //     return;
-        // }
         await e.preventDefault();
         console.log(approvedTokenRef);
         const amount = approvedTokenRef.current.value.trim()
@@ -22,6 +21,23 @@ const TokenApproval = ( ) => {
         }
         const amountToSend = ethers.parseUnits(amount, 18).toString()
         console.log(amountToSend);
+        try {
+            const transaction = await stakingTokenContract.approve(stakingContract.target, amountToSend)
+            setTransactionStatus("Transaction is pending... ")
+            const reciept = await transaction.wait()
+            if (reciept.status ===1){
+                setTransactionStatus("Transaction is successfull")
+                setTimeout(()=>{
+                    setTransactionStatus("")
+                },5000)
+                approvedTokenRef.current.value = ""
+            }
+            else{
+                    setTransactionStatus("Transaction failed !")
+                }
+        } catch (error) {
+            console.error("Token approval failed", error.message);
+        }
     }
 
     return (
@@ -31,7 +47,8 @@ const TokenApproval = ( ) => {
                 <input type="text" ref={approvedTokenRef} ></input>
                 <button onClick={approveToken} type="submit" >Token Approval</button>
             </form>
-
+            <br />
+            {transactionStatus }
         </div>
     )
 
