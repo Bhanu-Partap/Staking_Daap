@@ -1,32 +1,39 @@
-import { useState, useContext, useEffect, useRef } from "react"
+import { useState, useContext, useRef } from "react"
 import { ethers } from "ethers"
 
 
-
- const TokenApproval = () => {
-
+const TokenApproval = ( ) => {
     const approvedTokenRef = useRef()
-    const approveToken = async(e)=>{
-        e.preventDefault();
+    const approveToken = async (e) => {
+        // if (e) {
+        //     e.preventDefault(); 
+        // } else {
+        //     console.error("Event object is missing");
+        //     return;
+        // }
+        await e.preventDefault();
+        console.log(approvedTokenRef);
         const amount = approvedTokenRef.current.value.trim()
-        if(isNaN(amount) || amount<=0){
+        
+        console.log(amount);
+        if (isNaN(amount) || amount <= 0) {
             console.error("Please enter a valid positive number");
             return;
         }
-        const amountToSend = ethers.parseUnits(amount,18).toString()
+        const amountToSend = ethers.parseUnits(amount, 18).toString()
         console.log(amountToSend);
     }
-    
-return(
-    <div>
-        <form action="" onSubmit={approveToken}>
-            <label>Token Approvaal</label>
-            <input type="text" />
-            <button onClick={approveToken} ref={approveToken} type="submit" label= "Token Approve" ></button>
-        </form>
 
-    </div>
-)
+    return (
+        <div>
+            <form onSubmit={approveToken}>
+                <label>Token Approval : </label>
+                <input type="text" ref={approvedTokenRef} ></input>
+                <button onClick={approveToken} type="submit" >Token Approval</button>
+            </form>
+
+        </div>
+    )
 
 }
 export default TokenApproval
