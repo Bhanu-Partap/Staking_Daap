@@ -13,7 +13,7 @@ import { ethers } from "ethers"
             const rewardEarnedWei = await stakingContract.rewardsEarned(selectedAccount)
             const rewardEarnedEth = ethers.formatUnits(rewardEarnedWei.toString(),18)
             const roundReward = parseFloat(rewardEarnedEth).toFixed(2)
-            console.log(roundReward);
+            console.log("Earned Reward :",roundReward);
             setRewardEarned(roundReward)
         }
         catch (error) {

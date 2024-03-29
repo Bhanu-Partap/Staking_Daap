@@ -28,13 +28,13 @@ const connectWallet = (async () => {
         signer = await provider.getSigner()
 
         //================= ADDRESSES FOR CONTRACTS =====================//
-        // Staking Token :  0x37F348601fc753682C706da3EC35D785fD128f85
+        // Staking Token :  0xD77D9132459aef931Bc10Db8ceCEbDf90c5f246e
         // Reward Token : 0x969A35AC59A2ee0245547B1af43217949f803faE
-        // Staking Contract : 0x786cEeCB38bF1C058ebB2afA75D91904dc2DBb62
+        // Staking Contract : 0x9CdD5a4d1349538FFCc85Ff25bd0314F1bdA1530
 
         // Creating Instance
-        const stakingContractAddress = "0x786cEeCB38bF1C058ebB2afA75D91904dc2DBb62"
-        const stakingTokenContractAddress = "0x37F348601fc753682C706da3EC35D785fD128f85"
+        const stakingContractAddress = "0x9CdD5a4d1349538FFCc85Ff25bd0314F1bdA1530"
+        const stakingTokenContractAddress = "0xD77D9132459aef931Bc10Db8ceCEbDf90c5f246e"
 
         stakingContract = new Contract(stakingContractAddress, stakingAbi, signer)
         stakingTokenContract = new Contract(stakingTokenContractAddress, stakingTokenAbi, signer)
